@@ -183,7 +183,7 @@ Usually this is just its basename."
   "Insert a description of the repository's `HEAD' revision."
   (when-let ((v (or (magit-git-string "describe" "--tags" "--dirty")
                     ;; If there are no tags, use the date in MELPA format.
-                    (magit-git-string "show" "--no-patch" "--format=%cd-g%h"
+                    (magit-rev-format "%cd-g%h" "HEAD"
                                       "--date=format:%Y%m%d.%H%M"))))
     (save-match-data
       (when (string-match "-dirty\\'" v)
